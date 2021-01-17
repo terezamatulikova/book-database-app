@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Search Result
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-list *ngIf="books">
+        <ion-item *ngFor="let book of books">
+            <ion-label>
+                <h3>{{ book.title }}</h3>
+                <p>{{ book.authors ? book.authors.join(', ') : 'Unknown author' }}</p>
+                <p>{{ book.categories ? book.categories.join(', ') : 'Unknown category' }}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>
