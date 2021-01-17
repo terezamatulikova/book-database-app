@@ -25,13 +25,15 @@ export class BookResourceService extends HttpClient {
       url += 'subject:'+categoryQuery+'+';
     }
     return this.get(url+'&key='+this.api.APPID).pipe(
-        map((collection: { items: { volumeInfo: Book }[] }) => {
-          return collection.items.map(item => item.volumeInfo)
+        map((collection: { items: { id: string, volumeInfo: Book }[] }) => {
+          return collection.items.map(item => ({...item.volumeInfo, id: item.id}))
         })
     );
   }
 
-  getBook(id: number) {
-    return this.get(this.api.urlById+id+'&key='+this.api.APPID)
+  getBook(id: string): Observable<Book> {
+    return this.get(this.api.urlById+id+'?key='+this.api.APPID).pipe(
+        map((item: { volumeInfo: Book }) => item.volumeInfo)
+    )
   }
 }
