@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Storage} from "@ionic/storage";
+import {Book} from "../api/api-objects";
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +8,19 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  books: Book[];
 
-  constructor() {}
+  constructor(
+      private storage: Storage
+  ) {
+  }
+
+  ionViewWillEnter() {
+    this.storage.get('favourite').then((favourite) => {
+      if(favourite) {
+        this.books = favourite;
+      }
+    })
+  }
 
 }

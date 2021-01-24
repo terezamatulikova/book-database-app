@@ -3,6 +3,11 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button color="danger" (click)="favButtonClick()">
+                <ion-icon [name]="isFavourite ? 'heart' : 'heart-outline'"></ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -10,8 +15,8 @@
     <ion-card>
         <ion-card-header>
             <ion-card-title style="color: #ebc300">{{ book.title }}</ion-card-title>
-            <ion-card-subtitle>({{ book.publishedDate ? (book.publishedDate | date:'yyyy') : ''}})</ion-card-subtitle>
-            <ion-card-subtitle>{{ book.authors ? book.authors.join(', ') : '' }}</ion-card-subtitle>
+            <ion-card-subtitle>{{ book.publishedDate ? (book.publishedDate | date:'yyyy') : ''}}</ion-card-subtitle>
+            <ion-card-subtitle style="color: black; font-size: medium">{{ book.authors ? book.authors.join(', ') : '' }}</ion-card-subtitle>
             <ion-card-subtitle>{{ book.categories ? book.categories.join(', ') : '' }}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>

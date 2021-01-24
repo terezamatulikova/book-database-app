@@ -1,19 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
+    <ion-title style="color: #ebc300">
       My Library
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item>
+  <ion-list *ngIf="books && books.length > 0; else noBooks">
+    <ion-item *ngFor="let book of books" [routerLink]="['detail', book.id]" detail="false">
       <ion-label>
-        <h3>Lorem ipsum</h3>
-        <p>dolor sit amet</p>
-        <p>consectetur adipiscing elit. Duis ut urna neque.</p>
+        <h3>{{ book.title }}</h3>
+        <p>{{ book.authors ? book.authors.join(', ') : 'Unknown author' }}</p>
+        <p>{{ book.categories ? book.categories.join(', ') : 'Unknown category' }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
+  <ng-template #noBooks>
+    <div style="text-align: center">
+      <ion-chip color="secondary">
+        <ion-label>You do not have any favourite books.</ion-label>
+      </ion-chip>
+    </div>
+  </ng-template>
 </ion-content>

@@ -10,7 +10,7 @@
   <ion-searchbar formControlName="title" search-icon="text" placeholder="Title"></ion-searchbar>
   <ion-searchbar formControlName="author" search-icon="person" placeholder="Author"></ion-searchbar>
   <ion-searchbar formControlName="category" search-icon="book" placeholder="Category"></ion-searchbar>
-  <ion-chip color="warning" *ngIf="formGroup.hasError('required')">
+  <ion-chip color="secondary" *ngIf="formGroup.hasError('required')">
     <ion-label>At least one field must be filled.</ion-label>
   </ion-chip>
   <button (click)="search()" [disabled]="formGroup.invalid">

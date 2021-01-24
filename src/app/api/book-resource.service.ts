@@ -33,7 +33,7 @@ export class BookResourceService extends HttpClient {
 
   getBook(id: string): Observable<Book> {
     return this.get(this.api.urlById+id+'?key='+this.api.APPID).pipe(
-        map((item: { volumeInfo: Book }) => item.volumeInfo)
+        map((item: { id: string, volumeInfo: Book }) => ({...item.volumeInfo, id: item.id}))
     )
   }
 }
